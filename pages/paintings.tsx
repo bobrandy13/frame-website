@@ -1,6 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useContext } from "react";
 
 interface handleFilterEventType {
   target: HTMLButtonElement;
@@ -15,6 +15,7 @@ interface individualProduct {
   id: string;
   name: string;
   price?: number;
+  category: string;
 }
 
 function Paintings({ data }: { data: productData }) {
@@ -27,7 +28,7 @@ function Paintings({ data }: { data: productData }) {
   };
 
   useEffect(() => {
-    console.log(data);
+    console.log(data.products);
   }, [data]);
 
   return (
@@ -61,14 +62,19 @@ function Paintings({ data }: { data: productData }) {
       {/* this is for the products */}
       <div className="flex m-2 justify-center items-center flex-wrap">
         {productData.map((product: individualProduct, key) => {
-          console.log(product)
+          console.log(product);
           return (
             <div
               key={key}
               className=" shadow-lg w-1/4 max-w-1/6 min-w-200 bg-slate-200 h-80 inline rounded-sm m-2 p-10 hover:shadow-slate-300"
             >
               {product.name}
-              <Image src={product.Image} width={128} height={128}/>
+              <Image
+                src={product.Image}
+                width={128}
+                height={128}
+                alt="product image"
+              />
               <Link href="./frames" />
             </div>
           );
