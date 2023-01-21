@@ -1,3 +1,4 @@
+import Image from "next/image";
 import Link from "next/link";
 import React, { useEffect, useState } from "react";
 
@@ -58,14 +59,16 @@ function Paintings({ data }: { data: productData }) {
         </div>
       </div>
       {/* this is for the products */}
-      <div className="flex m-2 justify-center items-center">
+      <div className="flex m-2 justify-center items-center flex-wrap">
         {productData.map((product: individualProduct, key) => {
+          console.log(product)
           return (
             <div
               key={key}
-              className="flex-grow flex-col shadow-lg w-1/8 max-w-xs min-w-200 bg-slate-200 h-80 inline rounded-sm m-2 p-10 hover:shadow-slate-300"
+              className=" shadow-lg w-1/4 max-w-1/6 min-w-200 bg-slate-200 h-80 inline rounded-sm m-2 p-10 hover:shadow-slate-300"
             >
-              sdf
+              {product.name}
+              <Image src={product.Image} width={128} height={128}/>
               <Link href="./frames" />
             </div>
           );
