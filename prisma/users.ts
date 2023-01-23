@@ -16,13 +16,15 @@ interface product {
   price?: number,
   image: string, 
   inStock: boolean,
+  category: string
 }
 export async function createProduct(product: product) {
   try {
     const productsFromDB = await prisma.product.create({ data: {
       "name": product.name, 
       "Image": product.image,
-      "InStock": product.inStock
+      "InStock": product.inStock,
+      "category": product.category,
     }})
     return {product: productsFromDB}
   } catch (error) {

@@ -9,6 +9,11 @@ interface handleFilterEventType {
 interface productData {
   products: Array<object>;
 }
+
+type product = {
+  info: string, 
+  price: number,
+}
 interface individualProduct {
   Image: string;
   InStock: boolean;
@@ -18,12 +23,15 @@ interface individualProduct {
   category: string;
 }
 
+
 function Paintings({ data }: { data: productData }) {
+  console.log(data)
   const [productData, setProductData] = useState([...data.products]);
   const handleFilter = (e: Event) => {
     if (e.target !== null) {
       const { target } = e;
       if (target) console.log((target as HTMLButtonElement).value);
+      // TODO: filter based on what was presesd ;
     }
   };
 
@@ -36,6 +44,11 @@ function Paintings({ data }: { data: productData }) {
       <div className="w-90 h-20 rounded bg-slate-400 h m-2">
         <div className="flex justify-center items-center align-middle">
           <ul className="relative top-6">
+            <li className="float-left mx-5">
+              <button onClick={handleFilter} value="Abstract">
+                All paintings
+              </button>
+            </li>
             <li className="float-left mx-5">
               <button onClick={handleFilter} value="Abstract">
                 Abstract
@@ -68,7 +81,8 @@ function Paintings({ data }: { data: productData }) {
               key={key}
               className=" shadow-lg w-1/4 max-w-1/6 min-w-200 bg-slate-200 h-80 inline rounded-sm m-2 p-10 hover:shadow-slate-300"
             >
-              {product.name}
+              <p>{product.name}</p>
+              <strong>{product.id}</strong>
               <Image
                 src={product.Image}
                 width={128}
@@ -96,4 +110,7 @@ export async function getServerSideProps() {
   };
 }
 
+  
 export default Paintings;
+
+  

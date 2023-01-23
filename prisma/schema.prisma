@@ -21,6 +21,7 @@ model Product {
   price Int?
   Image String
   InStock Boolean
+  category String
 }
 
 
