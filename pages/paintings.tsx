@@ -1,6 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import React, { useEffect, useState, useContext } from "react";
+import ProductComponent from "components/ProductComponent"
 
 interface handleFilterEventType {
   target: HTMLButtonElement;
@@ -11,9 +12,9 @@ interface productData {
 }
 
 type product = {
-  info: string, 
-  price: number,
-}
+  info: string;
+  price: number;
+};
 interface individualProduct {
   Image: string;
   InStock: boolean;
@@ -25,7 +26,7 @@ interface individualProduct {
 
 
 function Paintings({ data }: { data: productData }) {
-  console.log(data)
+  console.log(data);
   const [productData, setProductData] = useState([...data.products]);
   const handleFilter = (e: Event) => {
     if (e.target !== null) {
@@ -73,24 +74,14 @@ function Paintings({ data }: { data: productData }) {
         </div>
       </div>
       {/* this is for the products */}
-      <div className="flex m-2 justify-center items-center flex-wrap">
+      <div className="flex flex-wrap">
         {productData.map((product: individualProduct, key) => {
           console.log(product);
           return (
-            <div
-              key={key}
-              className=" shadow-lg w-1/4 max-w-1/6 min-w-200 bg-slate-200 h-80 inline rounded-sm m-2 p-10 hover:shadow-slate-300"
-            >
-              <p>{product.name}</p>
-              <strong>{product.id}</strong>
-              <Image
-                src={product.Image}
-                width={128}
-                height={128}
-                alt="product image"
-              />
-              <Link href="./frames" />
-            </div>
+            <Link key={key} href={`/products/${product.name}`} passHref>
+              <ProductComponent product={product} />
+            </Link>
+            // make this into a component
           );
         })}
       </div>
@@ -110,7 +101,4 @@ export async function getServerSideProps() {
   };
 }
 
-  
 export default Paintings;
-
-  
