@@ -3,6 +3,11 @@ import Link from "next/link";
 import React, { useEffect, useState, useContext } from "react";
 import ProductComponent from "components/ProductComponent"
 
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faEnvelope } from '@fortawesome/free-solid-svg-icons'
+
+const menuIcon = <FontAwesomeIcon icon="fa-solid fa-bars" />
+
 interface handleFilterEventType {
   target: HTMLButtonElement;
 }
@@ -43,7 +48,10 @@ function Paintings({ data }: { data: productData }) {
   return (
     <>
       <div className="w-90 h-20 rounded bg-slate-400 h m-2">
-        <div className="flex justify-center items-center align-middle">
+        <button className="">
+          <FontAwesomeIcon icon="fa-solid fa-bars" />
+        </button>
+        <div className="md:flex text-center justify-center items-center align-middle">
           <ul className="relative top-6">
             <li className="float-left mx-5">
               <button onClick={handleFilter} value="Abstract">
@@ -74,15 +82,22 @@ function Paintings({ data }: { data: productData }) {
         </div>
       </div>
       {/* this is for the products */}
-      <div className="flex flex-wrap">
-        {productData.map((product: individualProduct, key) => {
+      <div className="flex justify-center items-center flex-wrap">
+        {/* {productData.map((product: individualProduct, key) => {
           console.log(product);
           return (
-            <Link key={key} href={`/products/${product.name}`} passHref>
-              <ProductComponent product={product} />
+            <Link href=`/products/${product.name}`>
+              <ProductComponent product={product} key={key}/>
             </Link>
             // make this into a component
           );
+        })} */}
+        {productData.map((product: any, key: number) => {
+          return (
+            <Link href={`/products/${product.name}`} key={key} >
+              <ProductComponent key={key} product={product}/>
+            </Link>
+          )
         })}
       </div>
     </>
@@ -90,7 +105,7 @@ function Paintings({ data }: { data: productData }) {
 }
 
 export async function getServerSideProps() {
-  const res = await fetch("http://localhost:3000/api/posts", {
+  const res = await fetch("http://localhost:3001/api/posts", {
     method: "GET",
   });
   const data = await res.json();
