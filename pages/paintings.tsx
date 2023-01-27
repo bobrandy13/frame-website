@@ -4,7 +4,7 @@ import React, { useEffect, useState, useContext } from "react";
 import ProductComponent from "components/ProductComponent"
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faEnvelope } from '@fortawesome/free-solid-svg-icons'
+import { faEnvelope } from "@fortawesome/free-regular-svg-icons";
 
 const menuIcon = <FontAwesomeIcon icon="fa-solid fa-bars" />
 
@@ -36,7 +36,13 @@ function Paintings({ data }: { data: productData }) {
   const handleFilter = (e: Event) => {
     if (e.target !== null) {
       const { target } = e;
-      if (target) console.log((target as HTMLButtonElement).value);
+      if (target) {
+        let filteredProducts = productData.filter((product: any) => {
+          console.log(product.category)
+          return (product.category === target)
+        })
+        console.log(filteredProducts)
+      }
       // TODO: filter based on what was presesd ;
     }
   };
@@ -105,7 +111,7 @@ function Paintings({ data }: { data: productData }) {
 }
 
 export async function getServerSideProps() {
-  const res = await fetch("http://localhost:3001/api/posts", {
+  const res = await fetch("http://localhost:3000/api/posts", {
     method: "GET",
   });
   const data = await res.json();
@@ -117,3 +123,4 @@ export async function getServerSideProps() {
 }
 
 export default Paintings;
+
