@@ -9,6 +9,7 @@ const nextConfig = {
       "images.unsplash.com",
       "assets.bluethumb.com.au",
       "upload.wikimedia.org",
+      "picsum.photos"
 
     ],
   },

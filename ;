@@ -1,0 +1,19 @@
+import { useEffect, useState } from "react";
+import { CarouselProvider, Slider, Slide, ButtonBack, ButtonNext } from 'pure-react-carousel';
+import Image from "next/image";
+
+export default function Home({ tests }: { tests: any }) {
+  return (
+    <>
+      <div className="bg-purple-200  h-screen">
+        <div className="flex items-center pl-10 h-1/2 w-1/2 rounded-sm">
+          <Image src={"/../public/abstractFrameHome.jpg"} alt="home iamge" width={500} height={500}/>
+        </div>
+        <div>
+          <h1 className="text-lg">Steven&#39;s framing service</h1>
+          <p>Welcome to our website</p>
+        </div>
+      </div>
+    </>
+  );
+}

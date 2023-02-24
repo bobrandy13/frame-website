@@ -1,52 +1,29 @@
 import { useEffect, useState } from "react";
+import { CarouselProvider, Slider, Slide, ButtonBack, ButtonNext } from 'pure-react-carousel';
+import Image from "next/image";
+import Link from "next/link"
 
 export default function Home({ tests }: { tests: any }) {
-  useEffect(() => {
-    console.log(tests);
-  });
-  const createTest = async () => {
-    const randomNum = Math.floor(Math.random() * 1000);
-    const res = await fetch("/api/test/add", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        name: `Test ${randomNum}`,
-        email: `test${randomNum}@test.com`,
-      }),
-    });
-    const data = await res.json();
-    console.log(data);
-  };
   return (
-    <div className="bg-purple-200 flex items-center justify-center h-screen">
-      <button onClick={createTest}>Click me</button>
-      Hello World
-    </div>
+    <>
+      <div className="bg-slate-300  h-screen">
+        <div className="flex pl-10 h-2/3 lg:w-full w-2/3">
+          <div className="flex items-center rounded-sm">
+            <Image
+              src={"/../public/abstractFrameHome.jpg"}
+              alt="home iamge"
+              width={500}
+              height={500}
+            />
+          </div>
+          <div className="flex justify-end">
+            <h1 className="text-6xl font-bold flex justify-center items-center m-10 hover:bg-slate-300">
+              Steven&#39;s framing service
+            </h1>
+            <p className="text-lg">Welcome to our website</p>
+          </div>
+        </div>
+      </div>
+    </>
   );
 }
-
-// export const getServerSideProps = async () => {
-//   // in here we want to connect to prisma and access the data
-//   try {
-//     console.log('CONNECTING TO MONGO');
-//     await connectMongo();
-//     console.log('CONNECTED TO MONGO');
-
-//     console.log('FETCHING DOCUMENTS');
-//     const tests = await Test.find();
-//     console.log('FETCHED DOCUMENTS');
-
-//     return {
-//       props: {
-//         tests: JSON.parse(JSON.stringify(tests)),
-//       },
-//     };
-//   } catch (error) {
-//     console.log(error);
-//     return {
-//       notFound: true,
-//     };
-//   }
-// };

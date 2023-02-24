@@ -2,6 +2,30 @@ import { PrismaClient } from "@prisma/client"
 import { StringExpression } from "mongoose"
 
 const prisma = new PrismaClient()
+interface product {
+  name: string,
+  price?: number,
+  image: string, 
+  inStock: boolean,
+  category: string
+}
+
+export async function getUniqueProducts(Name: any) {
+  try {
+    console.log(Name)
+    const product = await prisma.product.findUnique({
+      where: {
+        name: Name
+      }
+    })
+    console.log(product)
+    return {product}
+  }
+  catch (error) {
+    console.log(error)
+    return {error}
+  }
+}
 
 export async function getProducts() {
   try {
@@ -10,13 +34,6 @@ export async function getProducts() {
   } catch(error) {
     return {error}
   }
-}
-interface product {
-  name: string,
-  price?: number,
-  image: string, 
-  inStock: boolean,
-  category: string
 }
 export async function createProduct(product: product) {
   try {

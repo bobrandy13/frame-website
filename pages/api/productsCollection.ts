@@ -1,4 +1,4 @@
-// Fetch all posts (in /pages/api/posts.ts)
+// Fetch all posts (in /pages/api/productsCollection.ts)
 import { prisma } from "@prisma/client"
 import {NextApiRequest, NextApiResponse} from "next"
 import {getProducts, createProduct} from "../../prisma/users"

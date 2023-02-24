@@ -3,10 +3,7 @@ import Link from "next/link";
 import React, { useEffect, useState, useContext } from "react";
 import ProductComponent from "components/ProductComponent"
 
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faEnvelope } from "@fortawesome/free-regular-svg-icons";
 
-const menuIcon = <FontAwesomeIcon icon="fa-solid fa-bars" />
 
 interface handleFilterEventType {
   target: HTMLButtonElement;
@@ -55,10 +52,9 @@ function Paintings({ data }: { data: productData }) {
     <>
       <div className="w-90 h-20 rounded bg-slate-400 h m-2">
         <button className="">
-          <FontAwesomeIcon icon="fa-solid fa-bars" />
         </button>
         <div className="md:flex text-center justify-center items-center align-middle">
-          <ul className="relative top-6">
+          <ul className="">
             <li className="float-left mx-5">
               <button onClick={handleFilter} value="Abstract">
                 All paintings
@@ -87,12 +83,12 @@ function Paintings({ data }: { data: productData }) {
           </ul>
         </div>
       </div>
-      {/* this is for the products */}
+      {/* this is for the productsCollection */}
       <div className="flex justify-center items-center flex-wrap">
         {/* {productData.map((product: individualProduct, key) => {
           console.log(product);
           return (
-            <Link href=`/products/${product.name}`>
+            <Link href=`/productsCollection/${product.name}`>
               <ProductComponent product={product} key={key}/>
             </Link>
             // make this into a component
@@ -110,16 +106,15 @@ function Paintings({ data }: { data: productData }) {
   );
 }
 
-export async function getServerSideProps() {
-  const res = await fetch("http://localhost:3000/api/posts", {
-    method: "GET",
-  });
+export async function getStaticProps() {
+  const res = await fetch("http://localhost:3000/api/productsCollection")
   const data = await res.json();
+
   return {
     props: {
       data,
-    },
-  };
+    }
+  }
 }
 
 export default Paintings;
