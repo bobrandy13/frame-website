@@ -1,3 +1,4 @@
+import Frames from "@/pages/Frames"
 import { PrismaClient } from "@prisma/client"
 import { StringExpression } from "mongoose"
 
@@ -8,6 +9,29 @@ interface product {
   image: string, 
   inStock: boolean,
   category: string
+}
+
+interface frames {
+  name: string,
+  ppm: number,
+  image: string,
+  inStock: boolean,
+}
+
+
+export async function getFrames(Name: string) {
+  try {
+    console.log(Name)
+    const frames = await prisma.frames.findUnique({
+      where: { name: Name}
+    })
+    console.log(frames)
+    return {product}
+  }
+  catch(error){
+    console.log(error)
+    return {error}
+  }
 }
 
 export async function getUniqueProducts(Name: any) {

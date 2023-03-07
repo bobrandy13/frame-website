@@ -3,6 +3,7 @@ import {type} from "os";
 import { useEffect, useState } from "react";
 import ProductType from "../productType"
 import Image from "next/image";
+import { Carousel } from "react-responsive-carousel";
 
 const Product = ({data}: {data: ProductType}) => {
   const router = useRouter();
@@ -14,12 +15,19 @@ const Product = ({data}: {data: ProductType}) => {
   return (
     <>
       <div>
-        <div className="relative left-11 h-96 w-96">
-          <Image src={individualProduct.Image} alt="product photo" fill/>
+        <div className="relative left-11 h-96 w-96 min-h-screen flex items-center">
+          <div className="h-4/5 w-72 relative">
+            <Image
+              src={individualProduct.Image}
+              alt="product image"
+              fill
+              style={{ objectFit: "cover" }}
+            />
+          </div>
         </div>
       </div>
     </>
-  )
+  );
 };
 
 export async function getStaticProps(context) {

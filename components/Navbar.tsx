@@ -5,7 +5,7 @@ import ProductType from "../pages/productType"
 
 function Navbar() {
   return (
-    <div className="flex items-center h-20 w-full bg-gray-100 rounded-sm sticky top-0">
+    <div className="flex items-center h-20 w-full bg-gray-100 rounded-sm sticky z-50 top-0">
       <div className="flex items-center ml-2.5 w-full">
         <Link href="/">
           <Image src={logo} alt="pear logo" width={"50"} height={"50"} />

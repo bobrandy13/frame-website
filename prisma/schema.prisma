@@ -25,3 +25,10 @@ model Product {
 }
 
 
+model Frame {
+  id            String    @id @default(auto()) @map("_id") @db.ObjectId
+  name String @unique
+  pricePerMeter Float
+  image String
+  instock Boolean
+}
