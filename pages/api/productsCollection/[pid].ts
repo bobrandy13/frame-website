@@ -12,10 +12,10 @@ export default async function handle(req: NextApiRequest, res: NextApiResponse) 
         if (typeof(pid) === 'string') {
             const { product, error } = await getUniqueProducts(pid)
             console.log(product)
-            if (error) throw new Error(" you suck ") 
+            if (error) throw new Error(" it failed "); 
             return res.status(200).json(product)
         }
     } catch (error: any) {
-        return res.status(500).json({ error: error.message, name: "you suck"  })
+        return res.status(500).json({ error: error.message})
     }
 }

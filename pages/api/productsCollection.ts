@@ -7,7 +7,7 @@ const handler = async (req: NextApiRequest, res: NextApiResponse) => {
   if (req.method === 'GET') {
     try {
       const { products, error } = await getProducts()
-      if (error) throw new Error(error, "it fialed")
+      if (error) throw error;
       return res.status(200).json({ products })
     } catch (error: any) {
       return res.status(500).json({ error: error.message })
@@ -18,7 +18,7 @@ const handler = async (req: NextApiRequest, res: NextApiResponse) => {
     try {
       const data = req.body
       const { product, error } = await createProduct(data)
-      if (error) throw new Error(error, "failed")
+      if (error) throw error;
       return res.status(200).json({ product })
     } catch (error: any) {
       return res.status(500).json({ error: error.message, message: "you suck" })

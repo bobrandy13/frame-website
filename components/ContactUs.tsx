@@ -20,12 +20,15 @@ function ContactUs() {
     console.log(data)
     alert("Successfully submitted")
 
-    emailjs.sendForm("service_2zmh4cv", "template_a9xwj4v", form.current, "E8ASQ536_BvjeeMc2")
+    if (form.current) {
+      emailjs.sendForm("service_2zmh4cv", "template_a9xwj4v", form.current, "E8ASQ536_BvjeeMc2")
       .then((result) => {
         console.log(result)
       }, (error) => {
         console.error(error)
       })
+
+    }
   };
 
   // TODO: when user submits, i want to send an email to my personal email containing all the data; 

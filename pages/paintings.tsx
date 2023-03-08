@@ -30,7 +30,8 @@ interface individualProduct {
 function Paintings({ data }: { data: productData }) {
   console.log(data);
   const [productData, setProductData] = useState([...data.products]);
-  const handleFilter = (e: Event) => {
+  const handleFilter = (e: React.MouseEvent) => {
+
     if (e.target !== null) {
       const { target } = e;
       if (target) {
@@ -40,6 +41,7 @@ function Paintings({ data }: { data: productData }) {
         })
         console.log(filteredProducts)
       }
+      return 1
       // TODO: filter based on what was presesd ;
     }
   };
@@ -107,7 +109,7 @@ function Paintings({ data }: { data: productData }) {
 }
 
 export async function getStaticProps() {
-  const res = await fetch("http://localhost:3000/api/productsCollection")
+  const res = await fetch("http://localhost:3001/api/productsCollection")
   const data = await res.json();
 
   return {

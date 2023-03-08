@@ -19,20 +19,6 @@ interface frames {
 }
 
 
-export async function getFrames(Name: string) {
-  try {
-    console.log(Name)
-    const frames = await prisma.frames.findUnique({
-      where: { name: Name}
-    })
-    console.log(frames)
-    return {product}
-  }
-  catch(error){
-    console.log(error)
-    return {error}
-  }
-}
 
 export async function getUniqueProducts(Name: any) {
   try {
