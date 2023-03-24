@@ -13,9 +13,6 @@ function Navbar() {
         <div className="w-full float-right">
           <ul className="float-right">
             <li className="float-left mx-5">
-              <Link href="/Frames">Frames</Link>
-            </li>
-            <li className="float-left mx-5">
               <Link href="/paintings">Paintings</Link>
             </li>
             <li className="float-left mx-5">

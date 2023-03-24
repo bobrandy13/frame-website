@@ -1,6 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
-import React, { useEffect, useState, useContext } from "react";
+import React, { useEffect, useState, useContext, HtmlHTMLAttributes } from "react";
 import ProductComponent from "components/ProductComponent"
 
 
@@ -28,18 +28,23 @@ interface individualProduct {
 
 
 function Paintings({ data }: { data: productData }) {
-  console.log(data);
   const [productData, setProductData] = useState([...data.products]);
   const handleFilter = (e: React.MouseEvent) => {
-
+    setProductData([...data.products])
+    console.log(data.products)
     if (e.target !== null) {
-      const { target } = e;
-      if (target) {
-        let filteredProducts = productData.filter((product: any) => {
-          console.log(product.category)
-          return (product.category === target)
-        })
-        console.log(filteredProducts)
+      if (e.target) {
+        let cateogry = (e.target as HTMLInputElement).value;
+        if (cateogry === "All paintings") {
+          setProductData([...data.products]);
+        } else {
+          let filteredProducts = [...data.products].filter((product: any) => {
+            // console.log(product.category)
+            return product.category.toLowerCase() === cateogry;
+          });
+          setProductData(filteredProducts);
+          console.log(filteredProducts);
+        }
       }
       return 1
       // TODO: filter based on what was presesd ;
@@ -58,28 +63,33 @@ function Paintings({ data }: { data: productData }) {
         <div className="md:flex text-center justify-center items-center align-middle">
           <ul className="">
             <li className="float-left mx-5">
-              <button onClick={handleFilter} value="Abstract">
+              <button onClick={handleFilter} value="All paintings">
                 All paintings
               </button>
             </li>
             <li className="float-left mx-5">
-              <button onClick={handleFilter} value="Abstract">
+              <button onClick={handleFilter} value="abstract">
                 Abstract
               </button>
             </li>
             <li className="float-left mx-5">
-              <button onClick={handleFilter} value="Scenery">
+              <button onClick={handleFilter} value="scenery">
                 Scenery
               </button>
             </li>
             <li className="float-left mx-5">
-              <button onClick={handleFilter} value="Nature">
+              <button onClick={handleFilter} value="nature">
                 Nature
               </button>
             </li>
             <li className="float-left mx-5">
-              <button onClick={handleFilter} value="Fruits">
+              <button onClick={handleFilter} value="fruits">
                 Fruits
+              </button>
+            </li>
+            <li className="float-left mx-5">
+              <button onClick={handleFilter} value="fruits">
+                Clearance
               </button>
             </li>
           </ul>
@@ -109,7 +119,7 @@ function Paintings({ data }: { data: productData }) {
 }
 
 export async function getStaticProps() {
-  const res = await fetch("http://localhost:3001/api/productsCollection")
+  const res = await fetch("http://localhost:3000/api/productsCollection")
   const data = await res.json();
 
   return {

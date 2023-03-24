@@ -35,7 +35,7 @@ function ContactUs() {
   // TODO: style the form so that it looks good and like an an actual customer service form and get help form 
   return (
     <>
-      <div className="grid grid-cols-2 w-full">
+      <div className="grid grid-cols-2 w-full" id="contactUs">
         <div className="w-full h-1/2 p-10 m-5">
           <div>
             <form onSubmit={handleSubmit(onSubmit)} className="margin-4" ref={form}>
@@ -59,7 +59,11 @@ function ContactUs() {
               <input
                 placeholder={"Enter query"}
                 {...register("query")}
-                className="flex w-full h-64 m-4 align-text-top rounded"
+                className="flex w-full h-64 m-4 rounded text-left align-top flex-start"
+                style={{
+                  textAlign: "left",
+                  verticalAlign: "top"
+                }}
               />
               <div className="flex items-center justify-center">
                 <input
