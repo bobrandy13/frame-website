@@ -10,10 +10,10 @@ const nextConfig = {
       "images.unsplash.com",
       "assets.bluethumb.com.au",
       "upload.wikimedia.org",
-      "picsum.photos"
-
+      "picsum.photos",
     ],
   },
+  output: "standalone",
 };
 
 module.exports = nextConfig;

@@ -1,7 +1,8 @@
 // Fetch all posts (in /pages/api/productsCollection.ts)
-import { prisma } from "@prisma/client"
+import { prisma, PrismaClient } from "@prisma/client"
 import {NextApiRequest, NextApiResponse} from "next"
 import {getProducts, createProduct} from "../../prisma/users"
+
 
 const handler = async (req: NextApiRequest, res: NextApiResponse) => {
   if (req.method === 'GET') {
@@ -28,5 +29,4 @@ const handler = async (req: NextApiRequest, res: NextApiResponse) => {
   res.setHeader('Allow', ['GET', 'POST'])
   res.status(425).end(`Method ${req.method} is not allowed.`)
 }
-
-export default handler
+export default handler;
