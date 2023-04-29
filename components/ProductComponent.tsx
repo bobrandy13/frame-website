@@ -1,7 +1,7 @@
 import React from "react";
 import Image from "next/image"
 import Link from "next/link"
-import ProductType from "../pages/productType"
+import ProductType from "../utils/productType"
 
 export default function ProductComponent({product}: {product: ProductType}) {
   return (

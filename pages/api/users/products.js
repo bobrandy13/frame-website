@@ -1,10 +1,9 @@
-import { createUser, getUsers, getFrames } from "../../../prisma/users"
+import { getProducts, createProduct} from "../../../prisma/users"
 
 const handler = async (req, res) => {
   if (req.method === "GET") {
     try {
-      const { users, error } = await getUsers()
-      const { user1, error1 } = await getFrames()
+      const { user1, error1 } = await getProducts()
       console.log("user1", user1)
       if (error) throw new Error(error)
       return res.status(200).json({ user1 })
@@ -15,7 +14,7 @@ const handler = async (req, res) => {
   if (req.method === "POST") {
     try {
       const data = req.body 
-      const {user ,error} = await createUser(data)
+      const {user ,error} = await createProduct(data)
       if (error) throw new Error(error)
       return res.status(200).json({user})
     } catch(error){

@@ -1,9 +1,13 @@
 import Image from "next/image";
 import Link from "next/link";
-import React, { useEffect, useState, useContext, HtmlHTMLAttributes } from "react";
-import ProductComponent from "components/ProductComponent"
-
-
+import React, {
+  useEffect,
+  useState,
+  useContext,
+  HtmlHTMLAttributes,
+} from "react";
+import ProductComponent from "components/ProductComponent";
+import { getProducts } from "@/prisma/users";
 
 interface handleFilterEventType {
   target: HTMLButtonElement;
@@ -17,6 +21,7 @@ type product = {
   info: string;
   price: number;
 };
+
 interface individualProduct {
   Image: string;
   InStock: boolean;
@@ -26,12 +31,11 @@ interface individualProduct {
   category: string;
 }
 
-
 function Paintings({ data }: { data: productData }) {
   const [productData, setProductData] = useState([...data.products]);
   const handleFilter = (e: React.MouseEvent) => {
-    setProductData([...data.products])
-    console.log(data.products)
+    setProductData([...data.products]);
+    console.log(data.products);
     if (e.target !== null) {
       if (e.target) {
         let cateogry = (e.target as HTMLInputElement).value;
@@ -46,22 +50,17 @@ function Paintings({ data }: { data: productData }) {
           console.log(filteredProducts);
         }
       }
-      return 1
+      return 1;
       // TODO: filter based on what was presesd ;
     }
   };
 
-  useEffect(() => {
-    console.log(data.products);
-  }, [data]);
-
   return (
     <>
-      <div className="w-90 h-20 rounded bg-slate-400 h m-2">
-        <button className="">
-        </button>
-        <div className="md:flex text-center justify-center items-center align-middle">
-          <ul className="">
+      <div className="w-90 xs:h-20 h-32 rounded bg-slate-400 h xs:m-2">
+        <button className=""></button>
+        <div className="flex text-center justify-center items-center align-middle">
+          <ul className="flex items-center justify-center flex-wrap h-30 xs:h-20 relative -top-6">
             <li className="float-left mx-5">
               <button onClick={handleFilter} value="All paintings">
                 All paintings
@@ -108,10 +107,10 @@ function Paintings({ data }: { data: productData }) {
         })} */}
         {productData.map((product: any, key: number) => {
           return (
-            <Link href={`/products/${product.name}`} key={key} >
-              <ProductComponent key={key} product={product}/>
+            <Link href={`/products/${product.name}`} key={key}>
+              <ProductComponent key={key} product={product} />
             </Link>
-          )
+          );
         })}
       </div>
     </>
@@ -119,15 +118,13 @@ function Paintings({ data }: { data: productData }) {
 }
 
 export async function getStaticProps() {
-  const res = await fetch("http://localhost:3000/api/productsCollection")
-  const data = await res.json();
+  const data = await getProducts();
 
   return {
     props: {
       data,
-    }
-  }
+    },
+  };
 }
 
 export default Paintings;
-

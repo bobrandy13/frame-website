@@ -37,6 +37,7 @@ export async function getUniqueProducts(Name: any) {
   }
 }
 
+
 export async function getProducts() {
   try {
     const products = await prisma.product.findMany()

@@ -1,10 +1,11 @@
 import { useRouter } from "next/router";
 import {type} from "os";
 import { useEffect, useState } from "react";
-import ProductType from "../productType"
+import ProductType from "../../utils/productType"
 import Image from "next/image";
 import { Carousel } from "react-responsive-carousel";
 import { GetStaticProps } from "next";
+import { getProducts, getUniqueProducts } from "@/prisma/users";
 
 const Product = ({data}: {data: ProductType}) => {
   const router = useRouter();
@@ -48,24 +49,19 @@ const Product = ({data}: {data: ProductType}) => {
 };
 
 export const getStaticProps: GetStaticProps = async (context) => {
-  console.log(context)
-  const url = "http://localhost:3000/api/productsCollection/" + context.params?.products
-  const res = await fetch(url)
-  console.log(url)
-  const data = await res.json()
-  console.log("data", data)
+  const res = await getUniqueProducts(context.params?.products);
   return {
     props: {
-      data: data,
+      data: res.product,
     }
   }
 }
 
 export async function getStaticPaths() {
-  const res = await fetch("http://localhost:3000/api/productsCollection")
-  const data = await res.json()
+  const a = await getProducts();
+  console.log(a)
   return {
-     paths: data.products.map((product: ProductType)=> {
+     paths: a.products?.map((product: any)=> {
        return {
          params: {
            products: product.name

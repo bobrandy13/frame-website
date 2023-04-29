@@ -1,7 +1,7 @@
 import Image from "next/image";
 import logo from "../public/pear.jpg";
 import Link from "next/link";
-import ProductType from "../pages/productType"
+import ProductType from "../utils/productType"
 
 function Navbar() {
   return (
