@@ -1,13 +1,4 @@
-import { useEffect, useState } from "react";
-import { CarouselProvider, Slider, Slide, ButtonBack, ButtonNext } from 'pure-react-carousel';
-import Image from "next/image";
-import Link from "next/link"
-import image1 from "../public/image1.png"
-import image2 from "../public/image2.png"
-import image3 from "../public/image3.png"
-import image4 from "../public/image4.png"
 import 'pure-react-carousel/dist/react-carousel.es.css';
-
 export default function Home({ tests }: { tests: any }) {
   return (
     <>
