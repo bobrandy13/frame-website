@@ -4,7 +4,7 @@
 # Prisma supports the native connection string format for PostgreSQL, MySQL, SQLite, SQL Server, MongoDB and CockroachDB.
 # See the documentation for all the connection string options: https://pris.ly/d/connection-strings
 
-DATABASE_URL="mongodb+srv://bobrandy13:WoDL0bZvuFYdk7jJ@cluster0.4zgx3jj.mongodb.net/next-frames-website?retryWrites=true&w=majority"
+
 
 AUTH0_SECRET='3c4f0d133786f1d74bd4c5601e842c51f85f35322dd5b7d5acc3a2cc92936584'
 AUTH0_BASE_URL='http://localhost:3000'
