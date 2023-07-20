@@ -25,8 +25,8 @@ function ContactUs() {
     if (form.current) {
       emailjs
         .sendForm(
-          "service_2zmh4cv",
-          "template_a9xwj4v",
+          process.env.NEXT_PUBLIC_YOUR_SERCICE_ID,
+          process.env.NEXT_PUBLIC_YOUR_TEMPLATE_ID,
           form.current,
           "E8ASQ536_BvjeeMc2"
         )
@@ -35,6 +35,7 @@ function ContactUs() {
             console.log(result);
           },
           (error) => {
+            // TODO: swhow error when the email is no sucesfully submitted.
             console.error(error);
           }
         );
@@ -90,12 +91,12 @@ function ContactUs() {
                 style={{
                   textAlign: "left",
                   verticalAlign: "top",
-                  padding: "2px",
+                  padding: "12px",
                 }}
               />
               <div className="flex items-center justify-center">
                 <input
-                  className="w-40 h-20 flex bg-slate-500 rounded-lg items-center justify-center dark: text-white"
+                  className="w-32 h-12 flex bg-slate-500 rounded-lg items-center justify-center dark: text-white"
                   type="submit"
                   value="Submit"
                 />
