@@ -22,17 +22,15 @@ type product = {
   price: number;
 };
 
-interface individualProduct {
-  Image: string;
-  InStock: boolean;
-  id: string;
-  name: string;
-  price?: number;
-  category: string;
-}
-
 function Paintings({ data }: { data: productData }) {
   const [productData, setProductData] = useState([...data.products]);
+  const [currentPage, setCurrentPage] = useState(1);
+  const recordsPerPage = 5;
+  const lastIndex = currentPage * recordsPerPage;
+  const firstIndex = lastIndex - recordsPerPage;
+  const pageData = data.products.slice(firstIndex, lastIndex);
+  console.log(pageData);
+
   const handleFilter = (e: React.MouseEvent) => {
     setProductData([...data.products]);
     console.log(data.products);
@@ -57,10 +55,9 @@ function Paintings({ data }: { data: productData }) {
 
   return (
     <>
-      <div className="w-90 xs:h-20 h-32 rounded bg-slate-400 h xs:m-2">
-        <button className=""></button>
-        <div className="flex text-center justify-center items-center align-middle">
-          <ul className="flex items-center justify-center flex-wrap h-30 xs:h-20 relative -top-6">
+      <div className="w-90 xs:h-20 h-32 rounded bg-slate-400 h xs:m-2 dark:text-white">
+        <div className="items-center align-middle">
+          <ul className="flex flex-wrap h-30 xs:h-20 items-center justify-center">
             <li className="float-left mx-5">
               <button onClick={handleFilter} value="All paintings">
                 All paintings
@@ -95,7 +92,7 @@ function Paintings({ data }: { data: productData }) {
         </div>
       </div>
       {/* this is for the productsCollection */}
-      <div className="flex justify-center items-center flex-wrap">
+      <div className="flex justify-center items-center flex-wrap dark:bg-slate-100 dark:text-black">
         {/* {productData.map((product: individualProduct, key) => {
           console.log(product);
           return (
@@ -112,6 +109,14 @@ function Paintings({ data }: { data: productData }) {
             </Link>
           );
         })}
+      </div>
+      <div className="dark:bg-white flex justify-end p-2">
+        <div className="join">
+          <button className="join-item btn btn-md m-2">1</button>
+          <button className="join-item btn btn-md btn-active m-2">2</button>
+          <button className="join-item btn btn-md m-2">3</button>
+          <button className="join-item btn btn-md m-2">4</button>
+        </div>
       </div>
     </>
   );

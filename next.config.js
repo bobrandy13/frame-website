@@ -11,6 +11,7 @@ const nextConfig = {
       "assets.bluethumb.com.au",
       "upload.wikimedia.org",
       "picsum.photos",
+      "storage.googleapis.com"
     ],
   },
   output: "standalone",

@@ -1,14 +1,15 @@
 import Image from "next/image";
 import logo from "../public/pear.jpg";
 import Link from "next/link";
-import ProductType from "../utils/productType"
+import ProductType from "../utils/productType";
+import { useEffect } from "react";
 
 function Navbar() {
   return (
-    <div className="flex items-center h-20 w-full bg-gray-100 rounded-sm sticky z-50 top-0">
+    <div className="flex items-center h-20 w-full bg-gray-100 rounded-sm sticky z-50 top-0 dark:bg-slate-400 dark:text-white">
       <div className="flex items-center ml-2.5 w-full">
         <Link href="/">
-          <Image src={logo} alt="pear logo" width={"50"} height={"50"} />
+          {/* <Image src={logo} alt="pear logo" width={"50"} height={"50"} /> */}
         </Link>
         <div className="w-full float-right">
           <ul className="float-right">

@@ -46,7 +46,7 @@ function ContactUs() {
   return (
     <>
       <div
-        className="grid flex sm:grid-cols-2 w-full text-center"
+        className="grid sm:grid-cols-2 w-full text-center dark:text-slate-800"
         id="contactUs"
       >
         <div className="float-right w-45/100 m-10">
@@ -59,7 +59,7 @@ function ContactUs() {
             promptly.
           </h2>
         </div>
-        <div className="w-[90%] h-1/2 p-5 sm:m-5 mt-2 text-sm sm:text-md ">
+        <div className="w-[90%] h-1/2 p-5 sm:m-5 mt-2 text-sm sm:text-md">
           <div>
             <form
               onSubmit={handleSubmit(onSubmit)}
@@ -70,23 +70,23 @@ function ContactUs() {
                 <input
                   placeholder="Contact email"
                   {...register("email")}
-                  className=" flex m-4 w-full h-11 rounded p-2"
+                  className=" flex m-4 w-full h-11 rounded p-2 dark:bg-white"
                 />
                 <input
                   placeholder="Contact number here"
                   {...register("number")}
-                  className="flex m-4 w-full h-11 rounded p-2"
+                  className="flex m-4 w-full h-11 rounded p-2 bg-white"
                 />
                 <input
                   placeholder={"Name"}
                   {...register("name", { required: true })}
-                  className="flex m-4 w-full h-11 rounded p-2"
+                  className="flex m-4 w-full h-11 rounded p-2 bg-white"
                 />
               </div>
               <textarea
                 placeholder={"Enter query"}
                 {...register("query")}
-                className="flex w-full h-64 m-4 rounded text-left align-top flex-start"
+                className="flex w-full h-64 m-4 rounded text-left align-top flex-start bg-white"
                 style={{
                   textAlign: "left",
                   verticalAlign: "top",
@@ -95,7 +95,7 @@ function ContactUs() {
               />
               <div className="flex items-center justify-center">
                 <input
-                  className="w-40 h-20 flex bg-slate-500 rounded-lg items-center justify-center"
+                  className="w-40 h-20 flex bg-slate-500 rounded-lg items-center justify-center dark: text-white"
                   type="submit"
                   value="Submit"
                 />

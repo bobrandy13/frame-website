@@ -19,6 +19,6 @@
       "@/*": ["./*"]
     }
   },
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", "utils/connectMongo.js"],
+  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", "utils/connectMongo.js", "utils/seeding.mjs"],
   "exclude": ["node_modules"]
 }
