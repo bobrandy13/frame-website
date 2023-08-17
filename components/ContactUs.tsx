@@ -51,55 +51,49 @@ function ContactUs() {
         id="contactUs"
       >
         <div className="float-right w-45/100 m-10">
-          <h1 className="text-5xl font-serif relative top-9 text-center">
-            Contact us here.
+          <h1 className="text-3xl font-bold font-serif relative top-9 text-center">
+            Get in touch to find out more.
           </h1>
-          <h2 className="text-2xl font-serif m-2 relative top-20">
-            If you have any questions or queries, please do not hesitate to
-            contact by submitting a form here. We will try get back to you
-            promptly.
+          <h2 className="text-xl font-serif m-2 relative top-20">
+            Feel free to submit a query here.
           </h2>
         </div>
-        <div className="w-[90%] h-1/2 p-5 sm:m-5 mt-2 text-sm sm:text-md">
+        <div className="h-1/2 p-5 sm:m-5 mt-2 text-sm sm:text-md">
           <div>
-            <form
-              onSubmit={handleSubmit(onSubmit)}
-              className="margin-4"
-              ref={form}
-            >
-              <div className="grid grid-cols-3 gap-2">
+            <form onSubmit={handleSubmit(onSubmit)} className="m-4" ref={form}>
+              <div className="form-control w-full max-w-md">
+                <label className="label">
+                  <span className="label-text">Enter your email here.</span>
+                </label>
                 <input
-                  placeholder="Contact email"
-                  {...register("email")}
-                  className=" flex m-4 w-full h-11 rounded p-2 dark:bg-white"
+                  type="text"
+                  placeholder="Email..."
+                  className="input input-bordered input-md w-full bg-white"
                 />
+                <label className="label">
+                  <span className="label-text">Enter your phone number.</span>
+                </label>
                 <input
-                  placeholder="Contact number here"
-                  {...register("number")}
-                  className="flex m-4 w-full h-11 rounded p-2 bg-white"
+                  type="text"
+                  placeholder="Phone..."
+                  className="input input-bordered input-md w-full bg-white"
                 />
+                <label className="label">
+                  <span className="label-text">Enter your name here.</span>
+                </label>
                 <input
-                  placeholder={"Name"}
-                  {...register("name", { required: true })}
-                  className="flex m-4 w-full h-11 rounded p-2 bg-white"
+                  type="text"
+                  placeholder="Name..."
+                  className="input input-bordered input-md w-full bg-white mb-5"
                 />
-              </div>
-              <textarea
-                placeholder={"Enter query"}
-                {...register("query")}
-                className="flex w-full h-64 m-4 rounded text-left align-top flex-start bg-white"
-                style={{
-                  textAlign: "left",
-                  verticalAlign: "top",
-                  padding: "12px",
-                }}
-              />
-              <div className="flex items-center justify-center">
-                <input
-                  className="w-32 h-12 flex bg-slate-500 rounded-lg items-center justify-center dark: text-white"
-                  type="submit"
-                  value="Submit"
+                <textarea
+                  placeholder="Enter query..."
+                  className="textarea textarea-bordered textarea-sm h-40 w-full bg-white mb-5"
                 />
+
+                <button className="btn bg-white" type="submit">
+                  Submit
+                </button>
               </div>
             </form>
           </div>
@@ -110,3 +104,13 @@ function ContactUs() {
 }
 
 export default ContactUs;
+
+let backup_form = `<div className="hero min-h-screen bg-base-200">
+<div className="hero-content text-center">
+  <div className="max-w-md">
+    <h1 className="text-5xl font-bold">Hello there</h1>
+    <p className="py-6">Provident cupiditate voluptatem et in. Quaerat fugiat ut assumenda excepturi exercitationem quasi. In deleniti eaque aut repudiandae et a id nisi.</p>
+    <button className="btn btn-primary">Get Started</button>
+  </div>
+</div>
+</div>`;

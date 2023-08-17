@@ -15,8 +15,8 @@ function CustomframesPage() {
   }, [windowWidth]);
   return (
     <>
-      <div className="w-full h-screen flex flex-col justify-center items-center bg-slate-200 font-titles">
-        <h1 className="text-6xl relative -top-20 text-black">
+      {/* <div className="w-full h-screen flex flex-col justify-center items-center bg-slate-200">
+        <h1 className="text-6xl relative -top-20 text-center  text-black">
           We can make custom frames for you
         </h1>
         <h1 className="text-3xl font-titles relative -top-10 dark:text-white">
@@ -26,16 +26,27 @@ function CustomframesPage() {
           <div className="w-auto h-auto bg-white p-2 rounded">
             Contact Us Now.
           </div>
-        </Link>
+        </Link
       </div>
       <h1 className="text-3xl font-bold text-center pt-10 mt-2">
         Have a look at our samples
-      </h1>
+      </h1> */}
+      <div className="hero min-h-screen bg-base-200">
+        <div className="hero-content text-center">
+          <div className="max-w-md">
+            <h1 className="text-5xl font-bold">Custom frames</h1>
+            <p className="py-6">We can make custom picture frames for you.</p>
+            <Link href="#contactUs" className="btn btn-primary">
+              Contact Us now.
+            </Link>
+          </div>
+        </div>
+      </div>
       <div className="p-20">
         <Carousel dynamicHeight={true}>
           <div>
             <Image
-              src="https://picsum.photos/400/200"
+              src="https://picsum.photos/2000/1000"
               alt="random generated image"
               width={1000}
               height={300}
@@ -50,11 +61,11 @@ function CustomframesPage() {
               height={600}
             />
 
-            <p>Image 1</p>
+            <p>Image 2</p>
           </div>
           <div>
             <Image
-              src="https://picsum.photos/400/200"
+              src="https://picsum.photos/2000/1000"
               alt="random generated image"
               width={1920}
               height={600}

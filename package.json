@@ -8,7 +8,7 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "seed": "ts-node utils/seeding.ts"
+    "seed": "ts-node utils/seeding.mjs"
   },
   "dependencies": {
     "@auth0/nextjs-auth0": "^2.6.0",
@@ -41,6 +41,7 @@
     "next": "13.1.2",
     "next-auth": "^4.22.1",
     "pure-react-carousel": "^1.30.1",
+    "random-words": "^2.0.0",
     "react": "18.2.0",
     "react-dom": "18.2.0",
     "react-hook-form": "^7.43.1",
@@ -48,6 +49,7 @@
     "react-responsive-carousel": "^3.2.23",
     "trpc": "^0.11.3",
     "typescript": "4.9.4",
+    "vercel": "^31.2.0",
     "zod": "^3.21.4"
   },
   "devDependencies": {

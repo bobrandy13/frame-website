@@ -1,35 +1,42 @@
 import Image from "next/image";
+import { useSearchParams } from "next/navigation";
 import Link from "next/link";
-import React, {
-  useEffect,
-  useState,
-  useContext,
-  HtmlHTMLAttributes,
-} from "react";
+import React, { useEffect, useState } from "react";
 import ProductComponent from "components/ProductComponent";
 import { getProducts } from "@/prisma/users";
+import { GetServerSideProps, GetStaticProps } from "next";
 
 interface handleFilterEventType {
   target: HTMLButtonElement;
 }
-
-interface productData {
-  products: Array<object>;
-}
-
 type product = {
   info: string;
   price: number;
 };
+interface collectionData {
+  id: string;
+  image: string;
+  name: string;
+  products: Array<product>;
+}
 
-function Paintings({ data }: { data: productData }) {
-  const [productData, setProductData] = useState([...data.products]);
+function Paintings({ data }: { data: any }) {
+  console.log(data);
   const [currentPage, setCurrentPage] = useState(1);
-  const recordsPerPage = 5;
+  const recordsPerPage = 10;
+  const numOfPages = Math.max(data.products.length / recordsPerPage, 1);
+  console.log(numOfPages);
   const lastIndex = currentPage * recordsPerPage;
   const firstIndex = lastIndex - recordsPerPage;
   const pageData = data.products.slice(firstIndex, lastIndex);
-  console.log(pageData);
+  const [productData, setProductData] = useState([...pageData]);
+
+  useEffect(() => {
+    const lastIndex = currentPage * recordsPerPage;
+    const firstIndex = lastIndex - recordsPerPage;
+    const pageData = data.products.slice(firstIndex, lastIndex);
+    setProductData([...pageData]);
+  }, [currentPage, data.products]);
 
   const handleFilter = (e: React.MouseEvent) => {
     setProductData([...data.products]);
@@ -38,9 +45,9 @@ function Paintings({ data }: { data: productData }) {
       if (e.target) {
         let cateogry = (e.target as HTMLInputElement).value;
         if (cateogry === "All paintings") {
-          setProductData([...data.products]);
+          setProductData([...productData]);
         } else {
-          let filteredProducts = [...data.products].filter((product: any) => {
+          let filteredProducts = [...productData].filter((product: any) => {
             // console.log(product.category)
             return product.category.toLowerCase() === cateogry;
           });
@@ -49,7 +56,6 @@ function Paintings({ data }: { data: productData }) {
         }
       }
       return 1;
-      // TODO: filter based on what was presesd ;
     }
   };
 
@@ -111,11 +117,39 @@ function Paintings({ data }: { data: productData }) {
         })}
       </div>
       <div className="dark:bg-white flex justify-end p-2">
+        {/* i want to loop as there are many pages as there are. */}
         <div className="join">
-          <button className="join-item btn btn-md m-2">1</button>
-          <button className="join-item btn btn-md btn-active m-2">2</button>
-          <button className="join-item btn btn-md m-2">3</button>
-          <button className="join-item btn btn-md m-2">4</button>
+          {[...Array(numOfPages)].map((e, index: number) => {
+            console.log("ran");
+            return (
+              <button
+                className="join-item btn btn-md m-2"
+                key={index}
+                onClick={() => setCurrentPage(index + 1)}
+              >
+                {index + 1}
+              </button>
+            );
+          })}
+
+          {/* <button
+            className="join-item btn btn-md btn-active m-2"
+            onClick={() => setCurrentPage(2)}
+          >
+            2
+          </button>
+          <button
+            className="join-item btn btn-md m-2"
+            onClick={() => setCurrentPage(3)}
+          >
+            3
+          </button>
+          <button
+            className="join-item btn btn-md m-2"
+            onClick={() => setCurrentPage(4)}
+          >
+            4
+          </button> */}
         </div>
       </div>
     </>
@@ -123,6 +157,7 @@ function Paintings({ data }: { data: productData }) {
 }
 
 export async function getStaticProps() {
+  // take in values from the page request.
   const data = await getProducts();
 
   return {
