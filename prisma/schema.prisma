@@ -22,14 +22,14 @@ model Product {
   Image         String
   InStock       Boolean
   category      String
-  Collections   Collections? @relation(fields: [collectionsId], references: [id])
-  collectionsId String?      @db.ObjectId
+  // Collections   Collections? @relation(fields: [collectionsId], references: [id])
+  // collectionsId String?      @db.ObjectId
 }
 
 model Collections {
   id       String    @id @default(auto()) @map("_id") @db.ObjectId 
   name     String    @unique
-  products Product[]
+  products String[]
   image String
 }
 

@@ -3,7 +3,7 @@ import bg from "public/background.jpg";
 export default function Home({ tests }: { tests: any }) {
   return (
     <>
-      <div className="bg-slate-300 dark:text-black">
+      <div className="bg-slate-300 dark:text-black" data-theme="light">
         <div
           className="hero min-h-screen"
           style={{

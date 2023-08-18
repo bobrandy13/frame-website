@@ -89,7 +89,7 @@ const Product = ({ data }: { data: ProductType }) => {
 
 export const getStaticProps: GetStaticProps = async (context) => {
   const res = await getUniqueProducts(context.params?.products);
-  console.log(context.params?.products);
+  console.log("PRODUDCT PRODUCT PRODUCT ", context.params?.products);
   return {
     props: {
       data: res.product,
@@ -99,13 +99,16 @@ export const getStaticProps: GetStaticProps = async (context) => {
 
 export async function getStaticPaths() {
   const a = await getProducts();
-  console.log(a);
+  console.log("A IS IS IS IS", a);
   return {
     paths: a.products?.map((product: any) => {
       return {
         params: {
           products: product.name,
         },
+        // params: {
+        //   products: product,
+        // },
       };
     }),
     fallback: false,
