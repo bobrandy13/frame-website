@@ -20,12 +20,13 @@ interface frames {
 
 export async function getUniqueProducts(Name: any) {
   try {
-    console.log(Name);
+    console.log("wweee weooo wooo wooe eee wee", Name);
     const product = await prisma.collections.findUnique({
       where: {
         name: Name,
       },
       include: {
+        // but i am gonna try work on it now
         products: true,
       },
     });

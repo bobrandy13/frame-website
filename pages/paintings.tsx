@@ -61,7 +61,10 @@ function Paintings({ data }: { data: any }) {
 
   return (
     <>
-      <div className="w-90 xs:h-20 h-32 rounded bg-slate-400 h xs:m-2 dark:text-white">
+      <div
+        data-theme="light"
+        className="w-90 xs:h-20 h-32 rounded bg-slate-400 h xs:m-2 dark:text-white"
+      >
         <div className="items-center align-middle">
           <ul className="flex flex-wrap h-30 xs:h-20 items-center justify-center">
             <li className="float-left mx-5">
