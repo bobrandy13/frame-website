@@ -1,7 +1,7 @@
 import React, { useRef } from "react";
 import { useForm, SubmitHandler } from "react-hook-form";
 import emailjs from "@emailjs/browser";
-import sendEmail from "@/prisma/sendEmail";
+import sendEmail from "@/utils/sendEmail";
 
 type Input = {
   name: string;

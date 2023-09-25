@@ -5,10 +5,11 @@
   "proxy": "http://localhost:3000",
   "scripts": {
     "dev": "next dev",
-    "build": "next build",
+    "build": "prisma generate && next build",
     "start": "next start",
     "lint": "next lint",
-    "seed": "ts-node utils/seeding.mjs"
+    "seed": "ts-node utils/seeding.mjs",
+    "postinstall": "prisma generate"
   },
   "dependencies": {
     "@auth0/nextjs-auth0": "^2.6.0",
@@ -32,6 +33,7 @@
     "axios": "^1.2.3",
     "babel-plugin-macros": "^3.1.0",
     "daisyui": "^2.51.5",
+    "dotenv": "^16.3.1",
     "email-js": "^2.0.2",
     "eslint": "8.32.0",
     "eslint-config-next": "13.1.2",
