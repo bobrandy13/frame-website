@@ -1,6 +1,7 @@
 import React, { useRef } from "react";
 import { useForm, SubmitHandler } from "react-hook-form";
 import emailjs from "@emailjs/browser";
+import sendEmail from "@/prisma/sendEmail";
 
 type Input = {
   name: string;
@@ -23,22 +24,7 @@ function ContactUs() {
     alert("Successfully submitted");
 
     if (form.current) {
-      emailjs
-        .sendForm(
-          process.env.NEXT_PUBLIC_YOUR_SERCICE_ID,
-          process.env.NEXT_PUBLIC_YOUR_TEMPLATE_ID,
-          form.current,
-          "E8ASQ536_BvjeeMc2"
-        )
-        .then(
-          (result) => {
-            console.log(result);
-          },
-          (error) => {
-            // TODO: swhow error when the email is no sucesfully submitted.
-            console.error(error);
-          }
-        );
+      sendEmail(form.current);
     }
   };
 

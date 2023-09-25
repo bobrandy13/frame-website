@@ -1,4 +1,4 @@
-interface individualProduct {
+export default interface individualProduct {
   Image: string;
   InStock: boolean;
   id: string;

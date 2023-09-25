@@ -25,10 +25,6 @@ export async function getUniqueProducts(Name: any) {
       where: {
         name: Name,
       },
-      include: {
-        // but i am gonna try work on it now
-        products: true,
-      },
     });
     console.log(product);
     return { product };
@@ -40,11 +36,7 @@ export async function getUniqueProducts(Name: any) {
 
 export async function getProducts() {
   try {
-    const products = await prisma.collections.findMany({
-      include: {
-        products: true,
-      },
-    });
+    const products = await prisma.collections.findMany({});
     // in this function, I can paginate the results and return only the ones that are specified.
     return { products };
   } catch (error) {

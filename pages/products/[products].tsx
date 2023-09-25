@@ -13,9 +13,9 @@ const images = {
 };
 
 const Product = ({ data }: { data: ProductType }) => {
-  console.log(data);
+  console.log("the page data is ", data);
   const router = useRouter();
-  const [individualProduct] = useState(data);
+  const [individualProduct, setProductData] = useState<ProductType>(data);
 
   console.log(individualProduct);
   const { products } = router.query;
@@ -38,20 +38,44 @@ const Product = ({ data }: { data: ProductType }) => {
           <div className="container-1 sm:grow-[2] bg-white m-2 sm:items-center sm:justify-center flex justify-center rounded">
             <div className="relative w-4/5 h-72 sm:h-screen carousel">
               <div id="item1" className="carousel-item relative w-full m-20">
-                {[...Array(individualProduct.products?.length)].map(
-                  (e, index) => (
-                    <Image
-                      key={index}
-                      src={individualProduct.products[index].Image}
-                      alt="product image"
-                      className="w-full "
-                      fill
-                      style={{
-                        objectFit: "contain",
-                      }}
-                    />
-                  )
-                )}
+                {individualProduct.products?.map((e: any, indx) => {
+                  console.log(e, `item${indx + 1}`);
+                  console.log(individualProduct);
+                  return (
+                    <div
+                      key={indx}
+                      className="carousel-item w-full h-full relative"
+                      id={`item${indx + 1}`}
+                    >
+                      <Image
+                        src={e}
+                        alt="product image"
+                        fill
+                        style={{
+                          objectFit: "contain",
+                          // position: "relative",
+                        }}
+                      />
+                    </div>
+                  );
+                })}
+                {/* {[...Array(individualProduct.products?.length)].map(
+                  (e: string, index) => {
+                    console.log(e);
+                    return (
+                      <Image
+                        key={index}
+                        src={e}
+                        alt="product image"
+                        className="w-full "
+                        fill
+                        style={{
+                          objectFit: "contain",
+                        }}
+                      />
+                    );
+                  }
+                )} */}
                 {/* <Image
                   src={individualProduct.products[0].Image}
                   alt="product image"
